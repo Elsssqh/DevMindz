@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:devmindz/PageOne.dart';
+import 'package:devmindz/PageTwo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -111,6 +113,25 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PageOne()),
+                );
+              },
+              child: const Text('Room Selection'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PageTwo()),
+                );
+              },
+              child: const Text('Payment Detail'),
             ),
           ],
         ),
