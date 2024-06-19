@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:devmindz/PageTwo.dart';
-import 'package:devmindz/main.dart';
+import 'package:untitled3/PageTwo.dart';
+import 'package:untitled3/main.dart';
 
 class PageOne extends StatefulWidget {
   const PageOne({super.key});
