@@ -30,7 +30,7 @@ class NavBar extends StatelessWidget {
               ),
             ),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('assets/profile.png'), // Replace with the path to your image
+              backgroundImage: AssetImage('assets/555.png'), // Replace with the path to your image
             ),
           ),
           ListTile(

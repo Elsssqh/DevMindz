@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart'; // Import webview_flutter package
 
 class AboutUsScreen extends StatelessWidget {
+  // Define your team members and their positions
+  final List<Map<String, String>> teamMembers = [
+    {'name': 'Elsie', 'position': '535220076'},
+    {'name': 'Vincent C', 'position': '535220075'},
+    {'name': 'Yoga', 'position': '535220247'},
+    {'name': 'Widya', 'position': '535220262'},
+    {'name': 'Michael', 'position': '535220073'},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,17 +41,17 @@ class AboutUsScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildTeamMember('Nama1', 'Posisi'),
-                      _buildTeamMember('Nama2', 'Posisi'),
-                      _buildTeamMember('Nama3', 'Posisi'),
+                      _buildTeamMember(teamMembers[0]['name']!, teamMembers[0]['position']!, 'assets/Elsie.jpg'),
+                      _buildTeamMember(teamMembers[1]['name']!, teamMembers[1]['position']!, 'assets/vc.jpg'),
                     ],
                   ),
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildTeamMember('Nama4', 'Posisi'),
-                      _buildTeamMember('Nama5', 'Posisi'),
+                      _buildTeamMember(teamMembers[2]['name']!, teamMembers[2]['position']!, 'assets/yoga.jpg'),
+                      _buildTeamMember(teamMembers[3]['name']!, teamMembers[3]['position']!, 'assets/widy.jpg'),
+                      _buildTeamMember(teamMembers[4]['name']!, teamMembers[4]['position']!, 'assets/michael.jpg'),
                     ],
                   ),
                   SizedBox(height: 40),
@@ -70,12 +79,12 @@ class AboutUsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTeamMember(String name, String position) {
+  Widget _buildTeamMember(String name, String position, String imagePath) {
     return Column(
       children: [
         CircleAvatar(
           radius: 50,
-          backgroundImage: NetworkImage('https://via.placeholder.com/150'), // Replace with actual image URLs
+          backgroundImage: AssetImage(imagePath),
         ),
         SizedBox(height: 10),
         Text(name),
