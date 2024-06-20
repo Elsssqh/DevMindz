@@ -5,6 +5,7 @@ import 'package:untitled3/model/user.dart';
 import 'package:untitled3/detail_page.dart';
 import 'package:untitled3/food.dart';
 import 'package:untitled3/roomseleection.dart';
+import 'sidebar/NavBar.dart'; // Import NavBar
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   int _currentNav = 0;
   final List _bottomNav = [
     {
@@ -41,6 +44,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: const Text(
           'Hi Cust',
@@ -48,9 +52,9 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: const Color.fromARGB(255, 39, 9, 11),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.menu, color: Colors.white),
           onPressed: () {
-            Navigator.of(context).pop(); // Handle the back button action
+            _scaffoldKey.currentState?.openDrawer(); // Open the navigation drawer
           },
         ),
         actions: <Widget>[
@@ -64,33 +68,34 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      drawer: NavBar(), // Add the NavBar here
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
-                hintText: 'Search',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25.0),
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    hintText: 'Search',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Choose your Category',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              const Padding(
+                padding: EdgeInsets.all(8),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Choose your Category',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
-            ),
-          ),
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -134,11 +139,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   GestureDetector(
-                   
-                     onTap: () {
+                    onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) =>  RoomSelectionScreen()),
+                        MaterialPageRoute(builder: (context) => RoomSelectionScreen()),
                       );
                     },
                     child: Container(
@@ -221,45 +225,12 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
+            label: 'Payment',
           ),
         ],
         selectedItemColor: const Color.fromARGB(255, 178, 112, 70),
         unselectedItemColor: Colors.white,
         backgroundColor: const Color.fromARGB(255, 39, 9, 11),
-      ),
-    );
-  }
-
-  Widget searc() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Icon(Icons.search, color: Colors.grey),
-          SizedBox(width: 20),
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Search...",
-                border: InputBorder.none,
-                hintStyle: TextStyle(color: Colors.grey),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -347,22 +318,20 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Text(
-                          apartment.title!,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          overflow: TextOverflow.ellipsis,
+                      Text(
+                        apartment.title!,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
+                      const SizedBox(height: 4),
                       RatingBar.builder(
-                        initialRating: apartment.rating!,
-                        minRating: 1,
+                        initialRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 5,
