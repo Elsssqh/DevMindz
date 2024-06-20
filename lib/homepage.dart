@@ -4,6 +4,8 @@ import 'package:untitled3/model/apartment.dart';
 import 'package:untitled3/model/user.dart';
 import 'package:untitled3/detail_page.dart';
 import 'package:untitled3/food.dart';
+import 'package:untitled3/roomseleection.dart';
+import 'sidebar/NavBar.dart'; // Import NavBar
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   int _currentNav = 0;
   final List _bottomNav = [
     {
@@ -40,52 +44,56 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.brown,
-        title: Row(
-          children: [
-            Expanded(
-              child: Text(
-                'Hi, Cust. Welcome!',
-                style: TextStyle(
-                  fontSize: 18, // Adjust the font size as needed
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                'assets/logo.png',
-                height: 40, // Adjust the logo size as needed
-              ),
-            ),
-          ],
+        title: const Text(
+          'Hi Cust',
+          style: TextStyle(color: Colors.white), 
         ),
+        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: Colors.white),
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer(); // Open the navigation drawer
+          },
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/logo.png',
+              height: 70.0,
+              width: 80.0,
+            ),
+          ),
+        ],
       ),
+      drawer: NavBar(), // Add the NavBar here
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 30, 16, 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'What can I help you?',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    hintText: 'Search',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
                     ),
-                    Expanded(
-                      child: Padding(  
-                      padding: const EdgeInsets.fromLTRB(16, 30, 16, 20),
-                      child: searc(),
-                      ),
-                    ),// Moved search icon here
-                  ],
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Choose your Category',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -95,8 +103,9 @@ class _HomePageState extends State<HomePage> {
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const FoodScreen()),);
+                        context,
+                        MaterialPageRoute(builder: (context) => const FoodScreen()),
+                      );
                     },
                     child: Container(
                       width: 150,
@@ -131,7 +140,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // Define what happens when the Hotel container is tapped
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RoomSelectionScreen()),
+                      );
                     },
                     child: Container(
                       width: 150,
@@ -202,215 +214,164 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentNav,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.brown,
-        unselectedItemColor: Colors.brown,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: (value) => setState(() => _currentNav = value),
-        items: _bottomNav.map((e) {
-          return BottomNavigationBarItem(
-            icon: e['label'] == 'Profile'
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: Image.asset(
-                      e['icon_off'],
-                      width: 30,
-                      height: 30,
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                : Icon(e['icon_off']),
-            activeIcon: e['label'] == 'Profile'
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: Image.asset(
-                      e['icon'],
-                      width: 30,
-                      height: 30,
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                : Icon(e['icon']),
-            label: e['label'],
-          );
-        }).toList(),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Payment',
+          ),
+        ],
+        selectedItemColor: const Color.fromARGB(255, 178, 112, 70),
+        unselectedItemColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
       ),
     );
   }
 
-  Widget searc() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Icon(Icons.search, color: Colors.grey),
-          SizedBox(width: 20),
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Search...",
-                border: InputBorder.none,
-                hintStyle: TextStyle(color: Colors.grey),
+  Widget apartmentTop() {
+    return SizedBox(
+      height: 300, // Adjust the height as needed
+      child: ListView.builder(
+        itemCount: listApartmentTop.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          Apartment apartment = listApartmentTop[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailPage(apartment: apartment),
+                ),
+              );
+            },
+            child: Container(
+              width: 300, // Adjust the width as needed
+              margin: EdgeInsets.fromLTRB(
+                index == 0 ? 16 : 8,
+                0,
+                index == listApartmentTop.length - 1 ? 16 : 8,
+                0,
               ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-Widget apartmentTop() {
-  return SizedBox(
-    height: 300, // Adjust the height as needed
-    child: ListView.builder(
-      itemCount: listApartmentTop.length,
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (context, index) {
-        Apartment apartment = listApartmentTop[index];
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailPage(apartment: apartment),
-              ),
-            );
-          },
-          child: Container(
-            width: 300, // Adjust the width as needed
-            margin: EdgeInsets.fromLTRB(
-              index == 0 ? 16 : 8,
-              0,
-              index == listApartmentTop.length - 1 ? 16 : 8,
-              0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Stack(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.asset(
+                            apartment.image!,
+                            fit: BoxFit.cover,
+                            width: double.maxFinite,
+                          ),
+                        ),
+                        Positioned(
+                          top: 16,
+                          left: 16,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey.withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 4),
+                            child: Text(
+                              apartment.type!,
+                              style: const TextStyle(
+                                  fontSize: 16, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.brown,
+                              borderRadius: const BorderRadius.only(
+                                bottomRight: Radius.circular(16),
+                                topLeft: Radius.circular(16),
+                              ),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            child: Text(
+                              '\$ ${apartment.price!}',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: Image.asset(
-                          apartment.image!,
-                          fit: BoxFit.cover,
-                          width: double.maxFinite,
+                      Text(
+                        apartment.title!,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
-                      Positioned(
-                        top: 16,
-                        left: 16,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 4),
-                          child: Text(
-                            apartment.type!,
-                            style: const TextStyle(
-                                fontSize: 16, color: Colors.white),
-                          ),
+                      const SizedBox(height: 4),
+                      RatingBar.builder(
+                        initialRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.brown,
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.brown,
-                            borderRadius: const BorderRadius.only(
-                              bottomRight: Radius.circular(16),
-                              topLeft: Radius.circular(16),
-                            ),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
-                          child: Text(
-                            '\$ ${apartment.price!}',
-                            style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                        ignoreGestures: true,
+                        itemSize: 15,
+                        onRatingUpdate: (rating) {},
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        apartment.title!,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                  const SizedBox(height: 4),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          apartment.location!.split(', ').first,
+                          style: TextStyle(
+                              fontSize: 18, color: Colors.grey[700]),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    RatingBar.builder(
-                      initialRating: apartment.rating!,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star,
-                        color: Colors.brown,
+                      Text(
+                        apartment.users!.toString(),
+                        style: TextStyle(fontSize: 16, color: Colors.grey[700]),
                       ),
-                      ignoreGestures: true,
-                      itemSize: 15,
-                      onRatingUpdate: (rating) {},
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        apartment.location!.split(', ').first,
-                        style: TextStyle(
-                            fontSize: 18, color: Colors.grey[700]),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    Text(
-                      apartment.users!.toString(),
-                      style: TextStyle(fontSize: 16, color: Colors.grey[700]),
-                    ),
-                    Icon(Icons.person, size: 18, color: Colors.grey[700]),
-                  ],
-                ),
-              ],
+                      Icon(Icons.person, size: 18, color: Colors.grey[700]),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      },
-    ),
-  );
-}
+          );
+        },
+      ),
+    );
+  }
 
   Widget users() {
     return SizedBox(
