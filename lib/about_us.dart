@@ -14,13 +14,27 @@ class AboutUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('About Us'),
+        title: const Text(
+          'About Us',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pop(); // Handle the back button action
           },
         ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/logo.png',
+              height: 70.0,
+              width: 80.0,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
