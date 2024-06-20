@@ -33,80 +33,20 @@ class OrderHistoryScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Replace with your order history details or use a ListView to display multiple items
-              Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-                      child: Image.asset(
-                        'assets/apartment1.jpg', // Example image, replace with your order image
-                        height: 200,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Order Detail',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Order ID: #123456',
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Date: July 1, 2024',
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Items:',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('1x Snowy Suite Room'),
-                              Text('1x Extra Bed'),
-                            ],
-                          ),
-                          SizedBox(height: 16),
-                          Text(
-                            'Total:',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Rp 10.000.999',
-                            style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                  ],
-                ),
+              // Example order history card
+              OrderCard(
+                imagePath: 'assets/apartment1.jpg',
+                orderId: 'A1234',
+                orderDate: 'June 20, 2024',
+                items: ['1x Deluxe Room', '2x Breakfast'],
+                totalAmount: 'Rp 2.500.000',
+              ),
+              OrderCard(
+                imagePath: 'assets/apartment2.jpg',
+                orderId: 'B5678',
+                orderDate: 'June 19, 2024',
+                items: ['1x Suite Room', '1x Dinner'],
+                totalAmount: 'Rp 3.000.000',
               ),
             ],
           ),
@@ -134,6 +74,97 @@ class OrderHistoryScreen extends StatelessWidget {
           // Handle navigation to Profile, Home, or Cart based on index
           // Implement navigation functionality
         },
+      ),
+    );
+  }
+}
+
+class OrderCard extends StatelessWidget {
+  final String imagePath;
+  final String orderId;
+  final String orderDate;
+  final List<String> items;
+  final String totalAmount;
+
+  OrderCard({
+    required this.imagePath,
+    required this.orderId,
+    required this.orderDate,
+    required this.items,
+    required this.totalAmount,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+            child: Image.asset(
+              imagePath,
+              height: 200,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Order Detail',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'Order ID: $orderId',
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'Date: $orderDate',
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'Items:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: items.map((item) => Text(item)).toList(),
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Total:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  totalAmount,
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 16),
+        ],
       ),
     );
   }
