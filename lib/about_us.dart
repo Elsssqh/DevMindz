@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart'; // Import webview_flutter package
 
 class AboutUsScreen extends StatelessWidget {
   // Define your team members and their positions
@@ -15,13 +14,27 @@ class AboutUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('About Us'),
+        title: const Text(
+          'About Us',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pop(); // Handle the back button action
           },
         ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/logo.png',
+              height: 70.0,
+              width: 80.0,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -56,18 +69,21 @@ class AboutUsScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 40),
                   Text(
-                    'Our Location',
+                    'DevMindz Hotel & Restaurant',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    height: 300,
-                    child: WebView(
-                      initialUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d991.1319931938575!2d106.78571502917425!3d-6.198833870896448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f6b7bc85b149%3A0x2a0e9993dacecfec!2sTarumanagara%20University!5e0!3m2!1sen!2sid!4v1679874648982!5m2!1sen!2sid',
-                      javascriptMode: JavascriptMode.unrestricted,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
+                      'Discover DevMindz Hotel & Restaurant, a blend of modern comfort and timeless elegance in [City Name]. Enjoy luxurious accommodations, panoramic city views, and impeccable service. Indulge in culinary delights at our award-winning restaurant or relax in our spa and wellness center. Whether for business or pleasure, DevMindz Hotel & Restaurant promises a memorable experience with unmatched sophistication and hospitality.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ],
