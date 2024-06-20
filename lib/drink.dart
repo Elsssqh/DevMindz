@@ -1,31 +1,8 @@
 import 'package:flutter/material.dart';
 import 'breakfast.dart';
+import 'package:untitled3/bottomnav.dart';
 
 class DrinkScreen extends StatelessWidget {
-  //   int _selectedIndex = 0;
-
-  // void _onItemTapped(int index) {
-  //   switch (index) {
-  //     case 0:
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => const PageTwo()),
-  //       );
-  //       break;
-  //     case 1:
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => const MyApp()),
-  //       );
-  //       break;
-  //     case 2:
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => const PageTwo()),
-  //       );
-  //       break;
-  //   }
-
   final List<Map<String, dynamic>> foodItems = [
     {
       'name': 'Americano',
@@ -139,33 +116,7 @@ class DrinkScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-        ],
-        // currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(
-            255, 178, 112, 70), // Selected icon and label color
-        unselectedItemColor:
-            const Color.fromARGB(255, 178, 112, 70), // Unselected icon color
-        selectedLabelStyle: const TextStyle(
-            color: Color.fromARGB(255, 178, 112, 70)), // Selected label color
-        unselectedLabelStyle: const TextStyle(
-            color: Color.fromARGB(255, 178, 112, 70)), // Unselected label color
-        // onTap: _onItemTapped,
-        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
-      ),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }
@@ -175,7 +126,8 @@ class FoodItemCard extends StatelessWidget {
   final String imageUrl;
   final String price;
 
-  const FoodItemCard({super.key, 
+  const FoodItemCard({
+    super.key,
     required this.name,
     required this.imageUrl,
     required this.price,
@@ -191,7 +143,8 @@ class FoodItemCard extends StatelessWidget {
       child: Column(
         children: [
           ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(15.0)),
+            borderRadius:
+                const BorderRadius.vertical(top: Radius.circular(15.0)),
             child: Image.asset(
               imageUrl,
               height: 100,
@@ -220,7 +173,8 @@ class FoodItemCard extends StatelessWidget {
                     const Icon(Icons.star, color: Colors.yellow, size: 16),
                     const Icon(Icons.star, color: Colors.grey, size: 16),
                     IconButton(
-                      icon: const Icon(Icons.add_circle_outline, color: Colors.brown),
+                      icon: const Icon(Icons.add_circle_outline,
+                          color: Colors.brown),
                       onPressed: () {
                         // Functionality for adding item
                       },

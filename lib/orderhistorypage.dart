@@ -1,6 +1,9 @@
+import 'package:untitled3/bottomnav.dart';
 import 'package:flutter/material.dart';
 
 class OrderHistoryScreen extends StatelessWidget {
+  const OrderHistoryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +30,9 @@ class OrderHistoryScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -60,29 +63,7 @@ class OrderHistoryScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-        ],
-        selectedItemColor: const Color.fromARGB(255, 178, 112, 70),
-        unselectedItemColor: Colors.white,
-        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
-        onTap: (index) {
-          // Handle navigation to Profile, Home, or Cart based on index
-          // Implement navigation functionality
-        },
-      ),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }
@@ -94,7 +75,8 @@ class OrderCard extends StatelessWidget {
   final List<String> items;
   final String totalAmount;
 
-  OrderCard({
+  const OrderCard({
+    super.key,
     required this.imagePath,
     required this.orderId,
     required this.orderDate,
@@ -113,7 +95,7 @@ class OrderCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
             child: Image.asset(
               imagePath,
               height: 200,
@@ -126,35 +108,35 @@ class OrderCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Order Detail',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   'Order ID: $orderId',
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   'Date: $orderDate',
                 ),
-                SizedBox(height: 8),
-                Text(
+                const SizedBox(height: 8),
+                const Text(
                   'Items:',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: items.map((item) => Text(item)).toList(),
                 ),
-                SizedBox(height: 16),
-                Text(
+                const SizedBox(height: 16),
+                const Text(
                   'Total:',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -162,7 +144,7 @@ class OrderCard extends StatelessWidget {
                 ),
                 Text(
                   totalAmount,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.red,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -171,7 +153,7 @@ class OrderCard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
         ],
       ),
     );

@@ -10,6 +10,8 @@ class AboutUsScreen extends StatelessWidget {
     {'name': 'Michael', 'position': '535220073'},
   ];
 
+  AboutUsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,41 +45,46 @@ class AboutUsScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     'MEET OUR TEAM',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildTeamMember(teamMembers[0]['name']!, teamMembers[0]['position']!, 'assets/Elsie.jpg'),
-                      _buildTeamMember(teamMembers[1]['name']!, teamMembers[1]['position']!, 'assets/vc.jpg'),
+                      _buildTeamMember(teamMembers[0]['name']!,
+                          teamMembers[0]['position']!, 'assets/Elsie.jpg'),
+                      _buildTeamMember(teamMembers[1]['name']!,
+                          teamMembers[1]['position']!, 'assets/vc.jpg'),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildTeamMember(teamMembers[2]['name']!, teamMembers[2]['position']!, 'assets/yoga.jpg'),
-                      _buildTeamMember(teamMembers[3]['name']!, teamMembers[3]['position']!, 'assets/widy.jpg'),
-                      _buildTeamMember(teamMembers[4]['name']!, teamMembers[4]['position']!, 'assets/michael.jpg'),
+                      _buildTeamMember(teamMembers[2]['name']!,
+                          teamMembers[2]['position']!, 'assets/yoga.jpg'),
+                      _buildTeamMember(teamMembers[3]['name']!,
+                          teamMembers[3]['position']!, 'assets/widy.jpg'),
+                      _buildTeamMember(teamMembers[4]['name']!,
+                          teamMembers[4]['position']!, 'assets/michael.jpg'),
                     ],
                   ),
-                  SizedBox(height: 40),
-                  Text(
+                  const SizedBox(height: 40),
+                  const Text(
                     'DevMindz Hotel & Restaurant',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  const SizedBox(height: 20),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
                       'Discover DevMindz Hotel & Restaurant, a blend of modern comfort and timeless elegance in [City Name]. Enjoy luxurious accommodations, panoramic city views, and impeccable service. Indulge in culinary delights at our award-winning restaurant or relax in our spa and wellness center. Whether for business or pleasure, DevMindz Hotel & Restaurant promises a memorable experience with unmatched sophistication and hospitality.',
                       textAlign: TextAlign.center,
@@ -102,7 +109,7 @@ class AboutUsScreen extends StatelessWidget {
           radius: 50,
           backgroundImage: AssetImage(imagePath),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Text(name),
         Text(position),
       ],

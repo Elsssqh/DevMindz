@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
 
 class remote extends StatelessWidget {
+  const remote({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -9,12 +10,14 @@ class remote extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: RoomControlPage(),
+      home: const RoomControlPage(),
     );
   }
 }
 
 class RoomControlPage extends StatefulWidget {
+  const RoomControlPage({super.key});
+
   @override
   _RoomControlPageState createState() => _RoomControlPageState();
 }
@@ -29,9 +32,9 @@ class _RoomControlPageState extends State<RoomControlPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('On Progres'),
+        title: const Text('On Progres'),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             // Handle back button
           },
@@ -48,20 +51,21 @@ class _RoomControlPageState extends State<RoomControlPage> {
                   width: 100,
                   height: 100,
                 ),
-                SizedBox(width: 10),
-                Column(
+                const SizedBox(width: 10),
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Executive Cityscape Room',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     Text('Status: On Going'),
                   ],
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             buildControlSection('Lamp', isLampOn ? 'On' : 'Off', () {
               setState(() {
                 isLampOn = !isLampOn;
@@ -73,7 +77,7 @@ class _RoomControlPageState extends State<RoomControlPage> {
               });
             }),
             buildAirConditionerControl(),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             buildButton('Bluetooth Connection', () {
               // Handle Bluetooth Connection
             }),
@@ -83,7 +87,7 @@ class _RoomControlPageState extends State<RoomControlPage> {
             buildButton('Call Center', () {
               // Handle Call Center
             }),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             buildButton('Emergency Call', () {
               // Handle Emergency Call
             }, isEmergency: true),
@@ -93,7 +97,8 @@ class _RoomControlPageState extends State<RoomControlPage> {
     );
   }
 
-  Widget buildControlSection(String label, String status, VoidCallback onPressed) {
+  Widget buildControlSection(
+      String label, String status, VoidCallback onPressed) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -106,7 +111,7 @@ class _RoomControlPageState extends State<RoomControlPage> {
             ),
           ],
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
       ],
     );
   }
@@ -115,13 +120,13 @@ class _RoomControlPageState extends State<RoomControlPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Air Conditional'),
+        const Text('Air Conditional'),
         Row(
           children: [
             Column(
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_drop_up),
+                  icon: const Icon(Icons.arrow_drop_up),
                   onPressed: () {
                     setState(() {
                       if (fanSpeed < 30) fanSpeed += 17;
@@ -130,7 +135,7 @@ class _RoomControlPageState extends State<RoomControlPage> {
                 ),
                 Text(fanSpeed.toString()),
                 IconButton(
-                  icon: Icon(Icons.arrow_drop_down),
+                  icon: const Icon(Icons.arrow_drop_down),
                   onPressed: () {
                     setState(() {
                       if (fanSpeed > 1) fanSpeed -= 1;
@@ -157,7 +162,7 @@ class _RoomControlPageState extends State<RoomControlPage> {
             ),
           ],
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
       ],
     );
   }
@@ -176,7 +181,8 @@ class _RoomControlPageState extends State<RoomControlPage> {
     );
   }
 
-  Widget buildButton(String label, VoidCallback onPressed, {bool isEmergency = false}) {
+  Widget buildButton(String label, VoidCallback onPressed,
+      {bool isEmergency = false}) {
     return ElevatedButton(
       onPressed: onPressed,
       child: Text(label),

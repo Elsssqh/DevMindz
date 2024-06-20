@@ -4,6 +4,7 @@ import 'breakfast.dart';
 import 'dinner.dart';
 import 'snack.dart';
 import 'drink.dart';
+import 'cream.dart';
 
 class FoodScreen extends StatelessWidget {
   const FoodScreen({Key? key}) : super(key: key);
@@ -114,10 +115,10 @@ class FoodScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => DrinkScreen()),
+                      MaterialPageRoute(builder: (context) => CreamScreen()),
                     );
                   },
-                  child: Image.asset('assets/drink.jpg'),
+                  child: Image.asset('assets/ice.jpg'),
                 ),
               ],
             ),
@@ -133,7 +134,7 @@ class FoodScreen extends StatelessWidget {
             ),
           ),
           Container(
-            height: 330.0, width:200,
+            height: 330.0,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
@@ -172,7 +173,7 @@ class FoodScreen extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Card(
         child: Container(
-          width: 160,
+          width: 200,
           child: Column(
             children: <Widget>[
               Image.asset(imagePath, height: 100, fit: BoxFit.cover),

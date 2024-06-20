@@ -1,41 +1,64 @@
 import 'package:flutter/material.dart';
 import 'breakfast.dart';
-import 'package:untitled3/bottomnav.dart';
 
-class SnackScreen extends StatelessWidget {
+class CreamScreen extends StatelessWidget {
+  //   int _selectedIndex = 0;
+
+  // void _onItemTapped(int index) {
+  //   switch (index) {
+  //     case 0:
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => const PageTwo()),
+  //       );
+  //       break;
+  //     case 1:
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => const MyApp()),
+  //       );
+  //       break;
+  //     case 2:
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => const PageTwo()),
+  //       );
+  //       break;
+  //   }
+
   final List<Map<String, dynamic>> foodItems = [
     {
-      'name': 'Beef Jerky',
-      'image': 'assets/snack/Beef Jerky.jpg',
-      'price': 'Rp 56.000',
+      'name': 'Vanilla Ice Cream ',
+      'image': 'assets/cream/Vanilla Ice Cream.jpeg',
+      'price': 'Rp 29.000',
     },
     {
-      'name': 'Chocolate Chip Cookies',
-      'image': 'assets/snack/Chocolate Chip Cookies.jpg',
+      'name': 'Chocolate Ice Cream',
+      'image': 'assets/cream/Chocolate Ice Cream.jpeg',
       'price': 'Rp 40.000',
     },
     {
-      'name': 'Granola Bars',
-      'image': 'assets/snack/Granola Bars.jpg',
-      'price': 'Rp 62.000',
+      'name': 'Mint Chocolate Chip Ice ',
+      'image': 'assets/cream/Mint Chocolate Chip Ice.jpeg',
+      'price': 'Rp 42.000',
     },
     {
-      'name': 'Popcorn',
-      'image': 'assets/snack/Popcorn.jpg',
-      'price': 'Rp 69.000',
+      'name': 'Rocky Road Ice Cream',
+      'image': 'assets/cream/Rocky Road Ice Cream.jpeg',
+      'price': 'Rp 39.000',
     },
     {
-      'name': 'Potato Chips',
-      'image': 'assets/snack/Potato Chips.jpg',
-      'price': 'Rp 54.000',
+      'name': 'Salted Caramel',
+      'image': 'assets/cream/salted caramel.jpeg',
+      'price': 'Rp 30.000',
     },
     {
-      'name': 'Trail Mix',
-      'image': 'assets/Breakfast/Trail Mix.jpg',
-      'price': 'Rp 58.000',
+      'name': 'Mango Sorbet',
+      'image': 'assets/cream/Mango Sorbet.jpeg',
+      'price': 'Rp 25.000',
     },
   ];
-  SnackScreen({super.key});
+  CreamScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +102,7 @@ class SnackScreen extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
-              'Snack',
+              'Dinner',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
@@ -116,7 +139,33 @@ class SnackScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: const CustomBottomNavigationBar(),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Cart',
+          ),
+        ],
+        // currentIndex: _selectedIndex,
+        selectedItemColor: const Color.fromARGB(
+            255, 178, 112, 70), // Selected icon and label color
+        unselectedItemColor:
+            const Color.fromARGB(255, 178, 112, 70), // Unselected icon color
+        selectedLabelStyle: const TextStyle(
+            color: Color.fromARGB(255, 178, 112, 70)), // Selected label color
+        unselectedLabelStyle: const TextStyle(
+            color: Color.fromARGB(255, 178, 112, 70)), // Unselected label color
+        // onTap: _onItemTapped,
+        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
+      ),
     );
   }
 }
@@ -126,8 +175,7 @@ class FoodItemCard extends StatelessWidget {
   final String imageUrl;
   final String price;
 
-  const FoodItemCard({
-    super.key,
+  const FoodItemCard({super.key, 
     required this.name,
     required this.imageUrl,
     required this.price,
@@ -143,8 +191,7 @@ class FoodItemCard extends StatelessWidget {
       child: Column(
         children: [
           ClipRRect(
-            borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(15.0)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(15.0)),
             child: Image.asset(
               imageUrl,
               height: 100,
@@ -173,8 +220,7 @@ class FoodItemCard extends StatelessWidget {
                     const Icon(Icons.star, color: Colors.yellow, size: 16),
                     const Icon(Icons.star, color: Colors.grey, size: 16),
                     IconButton(
-                      icon: const Icon(Icons.add_circle_outline,
-                          color: Colors.brown),
+                      icon: const Icon(Icons.add_circle_outline, color: Colors.brown),
                       onPressed: () {
                         // Functionality for adding item
                       },

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:untitled3/bottomnav.dart';
 
 class RoomSelectionScreen extends StatelessWidget {
+  const RoomSelectionScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'Room Selection',
-          style: TextStyle(color: Colors.white), 
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 39, 9, 11),
         leading: IconButton(
@@ -35,14 +38,14 @@ class RoomSelectionScreen extends StatelessWidget {
             children: [
               TextField(
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                   hintText: 'Search',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(
@@ -52,7 +55,8 @@ class RoomSelectionScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+                      borderRadius:
+                          const BorderRadius.vertical(top: Radius.circular(10)),
                       child: Image.asset(
                         'assets/apartment1.jpg', // Ganti URL dengan gambar yang sesuai
                         height: 200,
@@ -60,8 +64,8 @@ class RoomSelectionScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
+                    const Padding(
+                      padding: EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -94,8 +98,10 @@ class RoomSelectionScreen extends StatelessWidget {
                               Text('✓ Premium Mattress'),
                               Text('✓ Pillows and Blankets'),
                               Text('✓ Temperature Control (AC and Heater)'),
-                              Text('✓ Private Bathroom with Hot and Cold Shower'),
-                              Text('✓ Bath Amenities (Towels, Soap, Shampoo, Hairdryer)'),
+                              Text(
+                                  '✓ Private Bathroom with Hot and Cold Shower'),
+                              Text(
+                                  '✓ Bath Amenities (Towels, Soap, Shampoo, Hairdryer)'),
                               Text('✓ Toilet'),
                               Text('✓ Mini Bar'),
                               Text('✓ Work Desk with Reading Lamp'),
@@ -129,27 +135,32 @@ class RoomSelectionScreen extends StatelessWidget {
                                 // Implement add to cart functionality
                               },
                               style: ElevatedButton.styleFrom(
-                                foregroundColor: Color.fromARGB(255, 0, 0, 0), backgroundColor: Color.fromARGB(255, 255, 255, 255), // Warna tulisan putih
+                                foregroundColor:
+                                    const Color.fromARGB(255, 0, 0, 0),
+                                backgroundColor: const Color.fromARGB(
+                                    255, 255, 255, 255), // Warna tulisan putih
                               ),
-                              child: Text('Add to Cart'),
+                              child: const Text('Add to Cart'),
                             ),
                           ),
-                          SizedBox(width: 8),
+                          const SizedBox(width: 8),
                           Expanded(
                             child: ElevatedButton(
                               onPressed: () {
                                 // Implement book now functionality
                               },
                               style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.white, backgroundColor: const Color.fromARGB(255, 107, 83, 74), // Warna tulisan putih
+                                foregroundColor: Colors.white,
+                                backgroundColor: const Color.fromARGB(
+                                    255, 107, 83, 74), // Warna tulisan putih
                               ),
-                              child: Text('Book Now'),
+                              child: const Text('Book Now'),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),
@@ -157,28 +168,7 @@ class RoomSelectionScreen extends StatelessWidget {
           ),
         ),
       ),
-       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-        ],
-        selectedItemColor: const Color.fromARGB(255, 178, 112, 70),
-        unselectedItemColor: Colors.white,
-        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
-        onTap: (index) {
-          // Implement navigation functionality
-        },
-      ),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

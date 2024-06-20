@@ -5,7 +5,8 @@ import 'package:untitled3/model/user.dart';
 import 'package:untitled3/detail_page.dart';
 import 'package:untitled3/food.dart';
 import 'package:untitled3/roomseleection.dart';
-import 'sidebar/NavBar.dart'; // Import NavBar
+import 'package:untitled3/bottomnav.dart';
+import 'sidebar/NavBar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,30 +18,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  int _currentNav = 0;
-  final List _bottomNav = [
-    {
-      'icon': Icons.home,
-      'icon_off': Icons.home_outlined,
-      'label': 'Home',
-    },
-    {
-      'icon': Icons.location_on,
-      'icon_off': Icons.location_on_outlined,
-      'label': 'Location',
-    },
-    {
-      'icon': Icons.favorite,
-      'icon_off': Icons.favorite_border,
-      'label': 'Favorite',
-    },
-    {
-      'icon': 'assets/profile.png',
-      'icon_off': 'assets/profile.png',
-      'label': 'Profile',
-    }
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,13 +25,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text(
           'Hi Cust',
-          style: TextStyle(color: Colors.white), 
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 39, 9, 11),
         leading: IconButton(
           icon: const Icon(Icons.menu, color: Colors.white),
           onPressed: () {
-            _scaffoldKey.currentState?.openDrawer(); // Open the navigation drawer
+            _scaffoldKey.currentState
+                ?.openDrawer(); // Open the navigation drawer
           },
         ),
         actions: <Widget>[
@@ -68,7 +46,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      drawer: NavBar(), // Add the NavBar here
+      drawer: const NavBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -96,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -104,7 +82,8 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const FoodScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const FoodScreen()),
                       );
                     },
                     child: Container(
@@ -118,11 +97,12 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 5,
                             blurRadius: 7,
-                            offset: Offset(0, 3), // changes position of shadow
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
                           ),
                         ],
                       ),
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.fastfood, size: 50),
@@ -142,7 +122,8 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => RoomSelectionScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const RoomSelectionScreen()),
                       );
                     },
                     child: Container(
@@ -156,11 +137,12 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 5,
                             blurRadius: 7,
-                            offset: Offset(0, 3), // changes position of shadow
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
                           ),
                         ],
                       ),
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.hotel, size: 50),
@@ -178,24 +160,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
-              apartmentTop(),
-              SizedBox(height: 30),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  'Top Users',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54,
-                  ),
-                ),
-              ),
-              SizedBox(height: 16),
-              users(),
-              SizedBox(height: 30),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   'New in Bali',
@@ -206,31 +171,48 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 20),
+              apartmentTop(),
+              const SizedBox(height: 30),
               apartmentNear(),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Payment',
+      bottomNavigationBar: const CustomBottomNavigationBar(),
+    );
+  }
+
+  Widget searc() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
           ),
         ],
-        selectedItemColor: const Color.fromARGB(255, 178, 112, 70),
-        unselectedItemColor: Colors.white,
-        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
+      ),
+      child: const Row(
+        children: [
+          Icon(Icons.search, color: Colors.grey),
+          SizedBox(width: 20),
+          Expanded(
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "Search...",
+                border: InputBorder.none,
+                hintStyle: TextStyle(color: Colors.grey),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -295,9 +277,9 @@ class _HomePageState extends State<HomePage> {
                           bottom: 0,
                           right: 0,
                           child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.brown,
-                              borderRadius: const BorderRadius.only(
+                              borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(16),
                                 topLeft: Radius.circular(16),
                               ),
@@ -318,20 +300,22 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        apartment.title!,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                      Expanded(
+                        child: Text(
+                          apartment.title!,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const SizedBox(height: 4),
                       RatingBar.builder(
-                        initialRating: 1,
+                        initialRating: apartment.rating!,
+                        minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 5,
@@ -352,8 +336,8 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                         child: Text(
                           apartment.location!.split(', ').first,
-                          style: TextStyle(
-                              fontSize: 18, color: Colors.grey[700]),
+                          style:
+                              TextStyle(fontSize: 18, color: Colors.grey[700]),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -457,7 +441,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget apartmentNear() {
     return SizedBox(
-      height: 180,
+      height: 300, // Adjust the height as needed
       child: ListView.builder(
         itemCount: listApartmentNear.length,
         scrollDirection: Axis.horizontal,
@@ -473,45 +457,118 @@ class _HomePageState extends State<HomePage> {
               );
             },
             child: Container(
-              width: 300,
+              width: 300, // Adjust the width as needed
               margin: EdgeInsets.fromLTRB(
                 index == 0 ? 16 : 8,
                 0,
                 index == listApartmentNear.length - 1 ? 16 : 8,
                 0,
               ),
-              child: Stack(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Image.asset(
-                      apartment.image!,
-                      fit: BoxFit.cover,
-                      width: double.maxFinite,
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.asset(
+                            apartment.image!,
+                            fit: BoxFit.cover,
+                            width: double.maxFinite,
+                          ),
+                        ),
+                        Positioned(
+                          top: 16,
+                          left: 16,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey.withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 4),
+                            child: Text(
+                              apartment.type!,
+                              style: const TextStyle(
+                                  fontSize: 16, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.brown,
+                              borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(16),
+                                topLeft: Radius.circular(16),
+                              ),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            child: Text(
+                              '\$ ${apartment.price!}',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.brown,
-                        borderRadius: const BorderRadius.only(
-                          bottomRight: Radius.circular(16),
-                          topLeft: Radius.circular(16),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          apartment.title!,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 20),
-                      child: Text(
-                        '\$ ${apartment.price!}',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                      RatingBar.builder(
+                        initialRating: apartment.rating!,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.brown,
+                        ),
+                        ignoreGestures: true,
+                        itemSize: 15,
+                        onRatingUpdate: (rating) {},
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          apartment.location!.split(', ').first,
+                          style:
+                              TextStyle(fontSize: 18, color: Colors.grey[700]),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                    ),
+                      Text(
+                        apartment.users!.toString(),
+                        style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                      ),
+                      Icon(Icons.person, size: 18, color: Colors.grey[700]),
+                    ],
                   ),
                 ],
               ),

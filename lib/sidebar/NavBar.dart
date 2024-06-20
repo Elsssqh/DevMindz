@@ -3,18 +3,21 @@ import 'package:untitled3/homepage.dart'; // Sesuaikan dengan lokasi homepage.da
 import 'package:untitled3/about_us.dart'; // Sesuaikan dengan lokasi about_us.dart
 import 'package:untitled3/loginScreen.dart'; // Sesuaikan dengan lokasi loginScreen.dart
 import 'package:untitled3/orderhistorypage.dart'; // Sesuaikan dengan lokasi orderhistory.dart
+import 'package:untitled3/payment.dart';
 import 'package:untitled3/remote.dart';
 
 class NavBar extends StatelessWidget {
+  const NavBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          UserAccountsDrawerHeader(
+          const UserAccountsDrawerHeader(
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 39, 9, 11),
+              color: Color.fromARGB(255, 39, 9, 11),
             ),
             accountName: Text(
               'Hello, Admin',
@@ -31,42 +34,44 @@ class NavBar extends StatelessWidget {
               ),
             ),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('assets/555.png'), // Replace with the path to your image
+              backgroundImage: AssetImage(
+                  'assets/555.png'), // Replace with the path to your image
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Home'),
+            leading: const Icon(Icons.home),
+            title: const Text('Home'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage()),
+                MaterialPageRoute(builder: (context) => const HomePage()),
               );
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
               // Implementasi untuk Settings jika diperlukan
             },
           ),
           ListTile(
-            leading: Icon(Icons.history),
-            title: Text('Order History'),
+            leading: const Icon(Icons.history),
+            title: const Text('Order History'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => OrderHistoryScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const OrderHistoryScreen()),
               );
             },
           ),
           ListTile(
-            leading: Icon(Icons.info),
-            title: Text('About Us'),
+            leading: const Icon(Icons.info),
+            title: const Text('About Us'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
               Navigator.push(
@@ -76,32 +81,34 @@ class NavBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.smart_toy),
-            title: Text('Smart Remote'),
+            leading: const Icon(Icons.smart_toy),
+            title: const Text('Smart Remote'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => remote()),
+                MaterialPageRoute(builder: (context) => const remote()),
               );
             },
           ),
           ListTile(
-            leading: Icon(Icons.payment),
-            title: Text('Payment'),
+            leading: const Icon(Icons.payment),
+            title: const Text('Payment'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
-              // Implementasi untuk Payment jika diperlukan
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Payment()),);
             },
           ),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Log Out'),
+            leading: const Icon(Icons.logout),
+            title: const Text('Log Out'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => loginScreen()),
+                MaterialPageRoute(builder: (context) => const loginScreen()),
               );
               // Implementasi untuk Log Out jika diperlukan
             },
