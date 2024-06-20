@@ -4,6 +4,7 @@ import 'package:untitled3/about_us.dart'; // Sesuaikan dengan lokasi about_us.da
 import 'package:untitled3/loginScreen.dart'; // Sesuaikan dengan lokasi loginScreen.dart
 import 'package:untitled3/orderhistorypage.dart'; // Sesuaikan dengan lokasi orderhistory.dart
 import 'package:untitled3/payment.dart';
+import 'package:untitled3/profilescreen.dart';
 import 'package:untitled3/remote.dart';
 
 class NavBar extends StatelessWidget {
@@ -54,7 +55,9 @@ class NavBar extends StatelessWidget {
             title: const Text('Settings'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
-              // Implementasi untuk Settings jika diperlukan
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfileScreen()),);
             },
           ),
           ListTile(
