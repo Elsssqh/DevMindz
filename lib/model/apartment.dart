@@ -31,7 +31,7 @@ class Apartment {
 final listApartmentTop = [
   Apartment(
     description:
-        "An apartment is a private residence in a building or house that's divided into several separate dwellings. An apartment can be one small room or several. An apartment is a flat — it's usually a few rooms that you rent in a building.",
+        "Experience pure luxury and comfort in our Snow Suite Room. Nestled in a winter wonderland, it offers breathtaking views and cozy accommodations for a perfect getaway.",
     facilities: ['2 Bedrooms', '1 Toilet', '1 Living Room', '1 Kitchen'],
     id: 'apartment1',
     image: 'assets/apartment1.jpg',
@@ -39,13 +39,13 @@ final listApartmentTop = [
     owner: listUser[0],
     price: 230,
     rating: 4.5,
-    title: 'Town Hall',
+    title: 'Snow Suite Room',
     type: 'Hot this month',
     users: 13,
   ),
   Apartment(
     description:
-        "An apartment is a private residence in a building or house that's divided into several separate dwellings. An apartment can be one small room or several. An apartment is a flat — it's usually a few rooms that you rent in a building.",
+        "Discover the epitome of summer bliss at our hotel, where every moment is infused with sun-drenched delight and effortless luxury. ",
     facilities: ['2 Bedrooms', '1 Toilet', '1 Living Room', '1 Kitchen'],
     id: 'apartment2',
     image: 'assets/apartment2.jpg',
@@ -53,7 +53,7 @@ final listApartmentTop = [
     owner: listUser[1],
     price: 173,
     rating: 4.5,
-    title: 'Babakan Seungit',
+    title: 'SummerTime Room',
     type: 'Great Place',
     users: 40,
   ),
@@ -61,7 +61,7 @@ final listApartmentTop = [
 final listApartmentNear = [
   Apartment(
     description:
-        "An apartment is a private residence in a building or house that's divided into several separate dwellings. An apartment can be one small room or several. An apartment is a flat — it's usually a few rooms that you rent in a building.",
+        "Whether you're enjoying a warm drink by the fireplace or taking in the crisp air on your private terrace, each moment in the Valley Autumn Room promises tranquility and comfort in harmony with the season.",
     facilities: ['2 Bedrooms', '1 Toilet', '1 Living Room', '1 Kitchen'],
     id: 'apartment3',
     image: 'assets/apartment3.jpg',
@@ -69,13 +69,13 @@ final listApartmentNear = [
     owner: listUser[2],
     price: 221,
     rating: 4.5,
-    title: 'Valley Mount',
+    title: 'Valley Autumn Room',
     type: 'Pure',
     users: 39,
   ),
   Apartment(
     description:
-        "An apartment is a private residence in a building or house that's divided into several separate dwellings. An apartment can be one small room or several. An apartment is a flat — it's usually a few rooms that you rent in a building.",
+        " Step into our Spring Room and embrace the essence of renewal and blooming beauty. Designed to reflect the vibrant spirit of the season, this room welcomes you with fresh, light-filled spaces adorned with soft pastels and floral accents.",
     facilities: ['2 Bedrooms', '1 Toilet', '1 Living Room', '1 Kitchen'],
     id: 'apartment4',
     image: 'assets/apartment4.jpg',
@@ -83,7 +83,7 @@ final listApartmentNear = [
     owner: listUser[1],
     price: 180,
     rating: 4.5,
-    title: 'Loa Uhuy',
+    title: 'Spring Ly Room',
     type: 'Pure',
     users: 21,
   ),

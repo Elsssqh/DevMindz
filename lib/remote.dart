@@ -10,6 +10,7 @@ class remote extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
+      debugShowCheckedModeBanner: false,
       home: const RoomControlPage(),
     );
   }
@@ -28,17 +29,31 @@ class _RoomControlPageState extends State<RoomControlPage> {
   double fanSpeed = 1;
   String acMode = 'Fan';
 
-  @override
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('On Progres'),
+        title: const Text(
+          'Remote Control',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            // Handle back button
+            Navigator.of(context).pop(); // Handle the back button action
           },
         ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/logo.png',
+              height: 70.0,
+              width: 80.0,
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -46,8 +61,8 @@ class _RoomControlPageState extends State<RoomControlPage> {
           children: [
             Row(
               children: [
-                Image.network(
-                  'https://via.placeholder.com/100', // Replace with actual image URL
+                Image.asset(
+                  'assets/apartment1.jpg', // Replace with actual image URL
                   width: 100,
                   height: 100,
                 ),
@@ -56,7 +71,7 @@ class _RoomControlPageState extends State<RoomControlPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Executive Cityscape Room',
+                      'Snow suite room',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),

@@ -187,7 +187,7 @@ class DetailPage extends StatelessWidget {
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               child: Text(
-                'Book this apartment',
+                'Book now',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
