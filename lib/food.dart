@@ -54,7 +54,7 @@ class FoodScreen extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Choose your Category',
+                'Choose your Category:',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
@@ -115,6 +115,7 @@ class FoodScreen extends StatelessWidget {
           ),
         ],
       ),
+      
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

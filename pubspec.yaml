@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  webview_flutter: ^2.0.14
   get: ^4.6.5
   flutter_rating_bar: ^4.0.0
 
