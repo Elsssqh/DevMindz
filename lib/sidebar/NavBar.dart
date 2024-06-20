@@ -3,6 +3,7 @@ import 'package:untitled3/homepage.dart'; // Sesuaikan dengan lokasi homepage.da
 import 'package:untitled3/about_us.dart'; // Sesuaikan dengan lokasi about_us.dart
 import 'package:untitled3/loginScreen.dart'; // Sesuaikan dengan lokasi loginScreen.dart
 import 'package:untitled3/orderhistorypage.dart'; // Sesuaikan dengan lokasi orderhistory.dart
+import 'package:untitled3/remote.dart';
 
 class NavBar extends StatelessWidget {
   @override
@@ -13,7 +14,7 @@ class NavBar extends StatelessWidget {
         children: <Widget>[
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 39, 9, 11)
+              color: const Color.fromARGB(255, 39, 9, 11),
             ),
             accountName: Text(
               'Hello, Admin',
@@ -75,6 +76,17 @@ class NavBar extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: Icon(Icons.smart_toy),
+            title: Text('Smart Remote'),
+            onTap: () {
+              Navigator.pop(context); // Close the drawer
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => remote()),
+              );
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.payment),
             title: Text('Payment'),
             onTap: () {
@@ -87,7 +99,7 @@ class NavBar extends StatelessWidget {
             title: Text('Log Out'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
-              Navigator.pushReplacement( // PushReplacement digunakan agar tidak bisa kembali ke halaman ini setelah logout
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => loginScreen()),
               );
