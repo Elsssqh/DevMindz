@@ -3,7 +3,7 @@ import 'lunch.dart';
 import 'breakfast.dart';
 import 'dinner.dart';
 import 'snack.dart';
-import 'drink.dart'; 
+import 'drink.dart';
 
 class FoodScreen extends StatelessWidget {
   const FoodScreen({Key? key}) : super(key: key);
@@ -42,7 +42,7 @@ class FoodScreen extends StatelessWidget {
             child: TextField(
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
-                hintText: 'Fried Rice',
+                hintText: 'Nasi Goreng',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25.0),
                 ),
@@ -110,12 +110,41 @@ class FoodScreen extends StatelessWidget {
                   },
                   child: Image.asset('assets/drink.jpg'),
                 ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DrinkScreen()),
+                    );
+                  },
+                  child: Image.asset('assets/drink.jpg'),
+                ),
+              ],
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Recommend For You:',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          Container(
+            height: 330.0, width:200,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                recommendCard('assets/Breakfast/Fried Rice Sausage.jpg', 'Fried Rice Sausage', 'Rp 10.000.999'),
+                recommendCard('assets/Breakfast/Biscuit and Gravy.jpg', 'Biscuit and Gravy', 'Rp 10.000.999'),
+                // Add more cards as needed
               ],
             ),
           ),
         ],
       ),
-      
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -134,6 +163,33 @@ class FoodScreen extends StatelessWidget {
         selectedItemColor: const Color.fromARGB(255, 178, 112, 70),
         unselectedItemColor: Colors.white,
         backgroundColor: const Color.fromARGB(255, 39, 9, 11),
+      ),
+    );
+  }
+
+  Widget recommendCard(String imagePath, String title, String price) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        child: Container(
+          width: 160,
+          child: Column(
+            children: <Widget>[
+              Image.asset(imagePath, height: 100, fit: BoxFit.cover),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+              Text(price),
+              IconButton(
+                icon: Icon(Icons.add_circle, color: Color.fromARGB(255, 178, 112, 70)),
+                onPressed: () {
+                  // Handle adding to cart
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
