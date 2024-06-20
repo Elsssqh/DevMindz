@@ -48,6 +48,14 @@ class OrderHistoryScreen extends StatelessWidget {
                 items: ['1x Suite Room', '1x Dinner'],
                 totalAmount: 'Rp 3.000.000',
               ),
+              // New order history card for Cornet Beef Hash
+              OrderCard(
+                imagePath: 'assets/Breakfast/Cornet Beef hash.jpg',
+                orderId: 'C7890',
+                orderDate: 'June 21, 2024',
+                items: ['1x Cornet Beef Hash'],
+                totalAmount: 'Rp 62.000',
+              ),
             ],
           ),
         ),
