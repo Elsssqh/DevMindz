@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:untitled3/model/apartment.dart';
 
 class DetailPage extends StatelessWidget {
@@ -37,9 +36,9 @@ class DetailPage extends StatelessWidget {
                   bottom: 0,
                   left: 0,
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.brown,
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         topRight: Radius.circular(16),
                       ),
                     ),

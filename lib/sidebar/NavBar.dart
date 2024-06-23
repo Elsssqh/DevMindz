@@ -57,7 +57,8 @@ class NavBar extends StatelessWidget {
               Navigator.pop(context); // Close the drawer
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ProfileScreen()),);
+                MaterialPageRoute(builder: (context) => const ProfileScreen()),
+              );
             },
           ),
           ListTile(
@@ -101,7 +102,8 @@ class NavBar extends StatelessWidget {
               Navigator.pop(context); // Close the drawer
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Payment()),);
+                MaterialPageRoute(builder: (context) => const Payment()),
+              );
             },
           ),
           ListTile(

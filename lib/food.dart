@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'lunch.dart';
-import 'breakfast.dart';
-import 'dinner.dart';
-import 'snack.dart';
-import 'drink.dart';
-import 'cream.dart';
+import 'package:untitled3/bottomnav.dart';
+import 'package:untitled3/lunch.dart';
+import 'package:untitled3/breakfast.dart';
+import 'package:untitled3/dinner.dart';
+import 'package:untitled3/snack.dart';
+import 'package:untitled3/drink.dart';
+import 'package:untitled3/cream.dart';
 
 class FoodScreen extends StatelessWidget {
   const FoodScreen({Key? key}) : super(key: key);
@@ -70,7 +71,8 @@ class FoodScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BreakfastScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => BreakfastScreen()),
                     );
                   },
                   child: Image.asset('assets/breakfast.jpg'),
@@ -138,33 +140,17 @@ class FoodScreen extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                recommendCard('assets/Breakfast/Fried Rice Sausage.jpg', 'Fried Rice Sausage', 'Rp 10.000.999'),
-                recommendCard('assets/Breakfast/Biscuit and Gravy.jpg', 'Biscuit and Gravy', 'Rp 10.000.999'),
+                recommendCard('assets/Breakfast/Fried Rice Sausage.jpg',
+                    'Fried Rice Sausage', 'Rp 10.000.999'),
+                recommendCard('assets/Breakfast/Biscuit and Gravy.jpg',
+                    'Biscuit and Gravy', 'Rp 10.000.999'),
                 // Add more cards as needed
               ],
             ),
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-        ],
-        selectedItemColor: const Color.fromARGB(255, 178, 112, 70),
-        unselectedItemColor: Colors.white,
-        backgroundColor: const Color.fromARGB(255, 39, 9, 11),
-      ),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 
@@ -179,11 +165,13 @@ class FoodScreen extends StatelessWidget {
               Image.asset(imagePath, height: 100, fit: BoxFit.cover),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+                child: Text(title,
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
               ),
               Text(price),
               IconButton(
-                icon: Icon(Icons.add_circle, color: Color.fromARGB(255, 178, 112, 70)),
+                icon: const Icon(Icons.add_circle,
+                    color: Color.fromARGB(255, 178, 112, 70)),
                 onPressed: () {
                   // Handle adding to cart
                 },

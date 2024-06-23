@@ -29,7 +29,7 @@ class _RoomControlPageState extends State<RoomControlPage> {
   double fanSpeed = 1;
   String acMode = 'Fan';
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

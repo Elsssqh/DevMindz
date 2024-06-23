@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'breakfast.dart';
 import 'package:untitled3/bottomnav.dart';
 
 class LunchScreen extends StatelessWidget {
@@ -100,18 +99,6 @@ class LunchScreen extends StatelessWidget {
                   price: foodItems[index]['price'],
                 );
               },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BreakfastScreen()),
-                );
-              },
-              child: const Text('Go to Breakfast'),
             ),
           ),
         ],

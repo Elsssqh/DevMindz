@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'breakfast.dart';
 import 'package:untitled3/bottomnav.dart';
 
 class SnackScreen extends StatelessWidget {
@@ -31,7 +30,7 @@ class SnackScreen extends StatelessWidget {
     },
     {
       'name': 'Trail Mix',
-      'image': 'assets/Breakfast/Trail Mix.jpg',
+      'image': 'assets/snack/Trail Mix.jpg',
       'price': 'Rp 58.000',
     },
   ];
@@ -69,7 +68,7 @@ class SnackScreen extends StatelessWidget {
             child: TextField(
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
-                hintText: 'Nasi Goreng',
+                hintText: 'Potato',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25.0),
                 ),
@@ -100,18 +99,6 @@ class SnackScreen extends StatelessWidget {
                   price: foodItems[index]['price'],
                 );
               },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BreakfastScreen()),
-                );
-              },
-              child: const Text('Go to Lunch'),
             ),
           ),
         ],
