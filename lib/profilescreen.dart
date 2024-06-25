@@ -42,17 +42,24 @@ class ProfileScreen extends StatelessWidget {
             children: [
               const CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('assets/profile_picture.png'),
+                backgroundImage: AssetImage('assets/555.png'),
               ),
               const SizedBox(height: 10),
               const Text(
-                'User',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                'Admin',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white, // Change this to the desired color
+                ),
               ),
               const SizedBox(height: 5),
               const Text(
-                'User@Gmail.com',
-                style: TextStyle(fontSize: 16),
+                'Devmindz@example.com',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white, // Change this to the desired color
+                ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -98,7 +105,14 @@ class ProfileScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
                 ),
-                child: const Text('Save'),
+                child: const Text(
+                  'Save',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ],
           ),
